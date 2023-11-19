@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "Prefix Remover",
+    "description": "This extension removes the prefix from downloads, for example y2mate",
+    "version": "1.0",
+    "permissions": ["downloads"],
+    "action": {
+        "default_popup": "remover.html",
+        "default_icon": "scissor.png"
+    }
+    
+}
