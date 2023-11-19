@@ -1,5 +1,5 @@
 "use strict";
-const map = {
+const siteMap = {
     "y2mate": "y2mate.com - ",
 };
 chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
@@ -7,7 +7,7 @@ chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
     console.log(item);
     let shouldSuggest = false;
     let newFilename = '';
-    Object.entries(map).forEach(([siteName, prefix]) => {
+    Object.entries(siteMap).forEach(([siteName, prefix]) => {
         if (item.filename.startsWith(prefix)) {
             newFilename = `${item.filename.replace(prefix, '')}}`;
             shouldSuggest = true;
@@ -21,6 +21,6 @@ chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
 });
 self.addEventListener('message', (event) => {
     if (event.data.action === 'getMap') {
-        event.source?.postMessage({ mapData: map });
+        event.source?.postMessage({ mapData: siteMap });
     }
 });
