@@ -2,19 +2,6 @@ const map: { [key: string]: string } = {
     "y2mate": "y2mate.com - ",
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-    insertNames();
-});
-
-function insertNames() {
-    const $ul = document.querySelector('#pr-site-list');
-    Object.keys(map).forEach((siteName) => {
-        const $li = document.createElement('li');
-        $li.textContent = siteName;
-        $ul?.appendChild($li);
-    });
-}
-
 
 chrome.downloads.onDeterminingFilename.addListener((item: chrome.downloads.DownloadItem, suggest) => {
     console.log("test");
@@ -33,5 +20,10 @@ chrome.downloads.onDeterminingFilename.addListener((item: chrome.downloads.Downl
         suggest({
             filename: newFilename
         });
+    }
+});
+self.addEventListener('message', (event) => {
+    if (event.data.action === 'getMap') {
+        event.source?.postMessage({ mapData: map });
     }
 });
