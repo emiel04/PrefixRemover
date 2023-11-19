@@ -10,11 +10,5 @@
     },
     "background": {
         "service_worker": "scripts/downloadwatcher.js"
-    },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["scripts/downloadwatcher.js"]
-        }
-    ]
+    }
 }
